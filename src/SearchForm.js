@@ -54,13 +54,15 @@ export default function SearchForm() {
         onChange={updateCity}
         autoComplete="off"
       />
-      <button type="Submit"> Submit </button>
-      <input
-        type="button"
-        className="form-btn"
-        value="📌"
-        onClick={currentCity}
-      />
+      <button type="Submit" className="form-btn">
+        {" "}
+        Submit{" "}
+      </button>
+      <button type="button" className="form-btn" value="" onClick={currentCity}>
+        <span role="img" aria-labelledby="pin-it">
+          📌
+        </span>
+      </button>
     </form>
   );
 
@@ -80,11 +82,6 @@ export default function SearchForm() {
       </div>
     );
   } else {
-    return (
-      <div>
-        {form}
-        <h4>City?</h4>
-      </div>
-    );
+    return <div>{form}</div>;
   }
 }
