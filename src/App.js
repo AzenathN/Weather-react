@@ -13,6 +13,23 @@ export default function App() {
         <SearchForm />
         <WeatherForecast />
       </div>
+      <footer>
+        <a
+          href="http://github.com/AzenathN/Weather-react"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open-source code
+        </a>
+        <small> coded by</small>{" "}
+        <a
+          href="http://github.com/AzenathN"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Azenath Tovar
+        </a>
+      </footer>
     </div>
   );
 }
