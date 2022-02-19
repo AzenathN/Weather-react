@@ -54,7 +54,7 @@ export default function SearchForm() {
         onChange={updateCity}
         autoComplete="off"
       />
-      <button type="Submit" className="form-btn">
+      <button type="Submit" className="form-btn+">
         {" "}
         Submit{" "}
       </button>
