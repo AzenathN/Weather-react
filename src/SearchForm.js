@@ -1,87 +1,108 @@
 import axios from "axios";
 import React, { useState } from "react";
+import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
-export default function SearchForm() {
-  let [city, setCity] = useState("");
-  let [loaded, setLoaded] = useState(false);
-  let [weather, setWeather] = useState({});
+export default function SearchForm(props) {
+  let [city, setCity] = useState(props.defaultCity);
+
+  let [weather, setWeather] = useState({ ready: false });
 
   function displayWeather(response) {
-    setLoaded(true);
     setWeather({
+      ready: true,
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
-
+      city: response.data.name,
       lat: response.data.coord.lat,
       lon: response.data.coord.lon,
       coordinates: response.data.coord,
-
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      date: new Date(response.data.dt * 1000),
+      icon: response.data.weather[0].icon,
       description: response.data.weather[0].description
     });
   }
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = `d72a05c8cd750bbf5b0d42daadb7570b`;
+    search();
+  }
+  function search() {
+    let apiKey = `7341668b71cc08edc7f2131a99bfe78a`;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     axios.get(apiUrl).then(displayWeather);
   }
 
-  function currentPosition(position) {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={d72a05c8cd750bbf5b0d42daadb7570b}`;
+  //function currentPosition(position) {
+  // let latitude = position.coords.latitude;
+  //let longitude = position.coords.longitude;
+  //let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={d72a05c8cd750bbf5b0d42daadb7570b}`;
 
-    axios.get(apiUrl).then(displayWeather);
-  }
+  //axios.get(apiUrl).then(displayWeather);
+  //}
 
   function updateCity(event) {
     setCity(event.target.value);
   }
 
-  function currentCity(event) {
-    event.preventDefault();
-    navigator.geolocation.getCurrentPosition(currentPosition);
-  }
+  //function currentCity(event) {
+  //event.preventDefault();
+  //navigator.geolocation.getCurrentPosition(currentPosition);
+  //}
 
-  let form = (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="search"
-        placeholder="City Search"
-        onChange={updateCity}
-        autoComplete="off"
-      />
-      <button type="Submit" className="form-btn+">
-        {" "}
-        Submit{" "}
-      </button>
-      <button type="button" className="form-btn" value="" onClick={currentCity}>
-        <span role="img" aria-labelledby="pin-it">
-          📌
-        </span>
-      </button>
-    </form>
-  );
-
-  if (loaded) {
+  if (weather.ready) {
     return (
-      <div>
-        {form}
-        <ul>
-          <li>Temperature: {Math.round(weather.temperature)} °C </li>
-          <li>Wind: {weather.wind} km/h</li>
-          <li>Humidity: {weather.humidity} %</li>
-          <li>
-            Description: {weather.description}
-            <img src={weather.icon} alt={weather.description} />
-          </li>
-        </ul>
+      <div className="Weather">
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-9">
+              <input
+                type="search"
+                placeholder="City Search"
+                onChange={updateCity}
+                autoComplete="off"
+              />
+            </div>
+            <div className="col-3">
+              <button type="Submit" className="form-btn">
+                {" "}
+                Submit{" "}
+              </button>
+            </div>
+          </div>
+        </form>
+        <WeatherInfo data={weather} />
+        <WeatherForecast coordinates={weather.coordinates} />
+        <footer>
+          <a
+            href="http://github.com/AzenathN/Weather-react"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open-source code
+          </a>
+          <small> coded by</small>{" "}
+          <a
+            href="http://github.com/AzenathN"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Azenath Tovar
+          </a>
+          <a
+            href="https://goofy-bohr-b3c3b5.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            hosted by netlify
+          </a>
+        </footer>
       </div>
     );
   } else {
-    return <div>{form}</div>;
+    search();
+    return "One moment please...";
   }
 }
