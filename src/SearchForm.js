@@ -35,7 +35,7 @@ export default function SearchForm(props) {
   }
 
   //function currentPosition(position) {
-  // let latitude = position.coords.latitude;
+  //let latitude = position.coords.latitude;
   //let longitude = position.coords.longitude;
   //let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={d72a05c8cd750bbf5b0d42daadb7570b}`;
 
