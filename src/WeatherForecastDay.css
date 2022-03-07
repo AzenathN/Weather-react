@@ -1,9 +1,22 @@
-.WeatherForecastDay{
+.WeatherForecast {
+  color: #0505ca;
+  opacity: 80%;
   text-align: center;
 }
+.WeatherForecastDay {
+  text-align: right;
+}
 
-.WeatherForecast-temp-min{
+.WeatherForecast-temp-min {
   opacity: 0.6;
   margin-left: 5px;
 }
+.WeatherForecast-temp-max,
+.WeatherForecast-temp-min {
+  color: #b66f06;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
 

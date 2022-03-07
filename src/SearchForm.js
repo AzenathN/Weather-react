@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
 import WeatherForecast from "./WeatherForecast";
+import "./SearchForm.css";
 
 export default function SearchForm(props) {
   let [city, setCity] = useState(props.defaultCity);
@@ -62,6 +63,7 @@ export default function SearchForm(props) {
                 placeholder="City Search"
                 onChange={updateCity}
                 autoComplete="off"
+                className="form-control search-input"
               />
             </div>
             <div className="col-3">

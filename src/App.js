@@ -1,15 +1,13 @@
 import React from "react";
 
-import "./App.css";
+import "./app.css";
 import SearchForm from "./SearchForm";
-import Heading from "./heading";
 
 export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <Heading />
-        <SearchForm defaultCity="Moreno Valley"  />
+        <SearchForm defaultCity="Moreno Valley" />
       </div>
     </div>
   );
