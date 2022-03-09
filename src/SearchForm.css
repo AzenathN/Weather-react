@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap");
+
 .Weather {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Ubuntu";
   border: 10px solid #03fcef6e;
-  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  background: linear-gradient(0.38turn, #3f87a6, #ebf8e1, #f69d3c);
   border-radius: 20px;
   box-shadow: 5px 5px 5px 5px #c28247;
   max-width: 700px;
@@ -28,7 +30,7 @@
   display: inline-block;
   border-radius: 6px;
   color: rgba(174, 173, 182, 0.4);
-  font-size: 16px;
+  font-size: 20px;
   height: 50px;
   line-height: 20px;
 }
@@ -41,7 +43,7 @@
 h1 {
   color: #0a15b1;
   margin: 20px 0 10px 0;
-  text-align: center;
+  text-align: left;
   font-weight: 100;
   line-height: 29px;
   margin-bottom: 0;
