@@ -1,6 +1,5 @@
 import React from "react";
-
-import "./app.css";
+import "./App.css";
 import SearchForm from "./SearchForm";
 
 export default function App() {
